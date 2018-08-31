@@ -12,5 +12,9 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('blog');
 });
+
+Auth::routes();
+
+Route::get('blog', 'Blog\PagesController@blog')->name('blog');
