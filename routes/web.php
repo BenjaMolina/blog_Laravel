@@ -18,3 +18,4 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('blog', 'Blog\PagesController@blog')->name('blog');
+Route::get('blog/{slug}', 'Blog\PagesController@post')->name('post');

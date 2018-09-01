@@ -9,11 +9,7 @@ use App\Post;
 
 class PagesController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
     public function blog()
     {
         $posts = Post::orderBy('id','DESC')->where('status','PUBLISHED')->paginate(7);
@@ -21,14 +17,12 @@ class PagesController extends Controller
         return view('blog.posts',compact('posts'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    
+    public function post($slug)
     {
-        //
+        $post = Post::where('slug',$slug)->first();
+        
+        return view('blog.post',compact('post'));
     }
 
     /**

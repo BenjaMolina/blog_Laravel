@@ -14,8 +14,8 @@
                         @if ($post->file)
                            <img src="{{ $post->file}}" class="img-responsive">
                         @endif
-                        {{ $post->excerpt}}
-                        <a href="#" class="pull-right">Leer mas</a>
+                        {{ $post->excerpt }}
+                        <a href="{{route('post',$post->slug)}}" class="pull-right">Leer mas</a>
                     </div>
                 </div>
             @endforeach
