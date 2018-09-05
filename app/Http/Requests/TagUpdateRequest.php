@@ -23,9 +23,10 @@ class TagUpdateRequest extends FormRequest
      */
     public function rules()
     {
+        // dd($this->tag->id);
         return [
             'name' =>'required',
-            'slug' => 'required|unique:tags,slug,'.$this->tag, //Requerido y unico en la tabla tags campo slug                                                      a excepcion del tag que se pasa por parametro                                                       (Ver ruta tags/{tag})
+            'slug' => 'required|unique:tags,slug,'.$this->tag->id, //Requerido y unico en la tabla tags campo slug                                                      a excepcion del tag que se pasa por parametro                                                       (Ver ruta tags/{tag})
         ];
     }
 }

@@ -5,8 +5,8 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-use App\Request\TagStoreRequest;
-use App\Request\TagUpdateRequest;
+use App\Http\Requests\TagStoreRequest;
+use App\Http\Requests\TagUpdateRequest;
 
 use App\Tag;
 
@@ -85,7 +85,7 @@ class TagController extends Controller
     {
         $tag->update($request->all());
 
-        return redirect()->route('admin.tags.edit',$tag->id)
+        return redirect()->route('tags.edit',$tag->id)
                 ->with('info', 'Etiqueta actualizada con exito');
     }
 
