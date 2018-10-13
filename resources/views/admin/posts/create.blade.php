@@ -15,6 +15,8 @@
 
                             @include('admin.posts.partials.form',[
                                 'entrada' => null,
+                                'categories' => $categories,
+                                'tags' => $tags,
                             ])
 
                         </form>

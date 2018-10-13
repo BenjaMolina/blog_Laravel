@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 use App\Post;
+use App\Category;
+use App\Tag;
+
 use App\Http\Requests\PostRequest;
 
 class PostController extends Controller
@@ -22,7 +25,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::paginate();
+        $posts = Post::where('user_id',auth()->user()->id)->paginate();
 
         return view('admin.posts.index', compact('posts'));
     }
@@ -34,7 +37,12 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('admin.posts.create');
+        $categories = Category::orderBy('name', 'ASC')->get(['id', 'name']);
+        $tags       = Tag::orderBy('name', 'ASC')->get(['id','name']);
+
+        // return ($categories);
+
+        return view('admin.posts.create',compact('categories', 'tags'));
     }
 
     /**
@@ -69,7 +77,10 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        return view('admin.posts.edit', compact('post'));
+        $categories = Category::orderBy('name', 'ASC')->get(['id', 'name']);
+        $tags       = Tag::orderBy('name', 'ASC')->get(['id','name']);
+
+        return view('admin.posts.edit', compact('post','categories','tags'));
     }
 
     /**

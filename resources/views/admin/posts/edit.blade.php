@@ -16,6 +16,8 @@
                             {!! method_field('PUT')!!}
                             @include('admin.posts.partials.form',   [
                                 'entrada' => $post,
+                                'categories' => $categories,
+                                'tags' => $tags,
                                 ]
                             )
                         </form>
