@@ -11,7 +11,7 @@
                     </div>                
 
                     <div class="panel-body">                                                   
-                        <form action="{{route('posts.update',$post->id)}}" method="post">
+                        {{-- <form action="{{route('posts.update',$post->id)}}" method="post">
                             {!! csrf_field()!!}
                             {!! method_field('PUT')!!}
                             @include('admin.posts.partials.form',   [
@@ -20,7 +20,15 @@
                                 'tags' => $tags,
                                 ]
                             )
-                        </form>
+                        </form> --}}
+                        {{ Form::model(
+                            $post,[
+                                'route' => ['posts.update', $post->id],
+                                'method' => 'PUT'
+                            ]
+                        )}}
+                            @include('admin.posts.partials.form')
+                        {{ Form::close() }}
                     </div>
                 </div>
             </div>

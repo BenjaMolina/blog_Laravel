@@ -26,7 +26,7 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::where('user_id',auth()->user()->id)->paginate();
-
+        // return $posts;
         return view('admin.posts.index', compact('posts'));
     }
 
@@ -37,7 +37,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        $categories = Category::orderBy('name', 'ASC')->get(['id', 'name']);
+        $categories = Category::orderBy('name', 'ASC')->pluck('name', 'id');
         $tags       = Tag::orderBy('name', 'ASC')->get(['id','name']);
 
         // return ($categories);
@@ -77,7 +77,8 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        $categories = Category::orderBy('name', 'ASC')->get(['id', 'name']);
+       
+        $categories = Category::orderBy('name', 'ASC')->pluck('name', 'id');
         $tags       = Tag::orderBy('name', 'ASC')->get(['id','name']);
 
         return view('admin.posts.edit', compact('post','categories','tags'));

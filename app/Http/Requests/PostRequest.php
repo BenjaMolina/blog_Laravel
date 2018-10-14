@@ -34,6 +34,10 @@ class PostRequest extends FormRequest
             'excerpt' => 'required',
             'slug' => 'required|unique:posts,slug,'.$id,
             'body' => 'required',
+            'user_id' => 'required',
+            'category_id' => 'required',
+            'status' => 'required',
+            'file' => 'required',
         ];
     }
 }

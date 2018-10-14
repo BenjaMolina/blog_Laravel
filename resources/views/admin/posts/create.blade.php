@@ -10,16 +10,20 @@
                     </div>                
 
                     <div class="panel-body">
-                        <form action="{{ route('posts.store')}}" method="POST">
+                        {{-- <form action="{{ route('posts.store')}}" method="POST">
                             {!! csrf_field() !!}
-
                             @include('admin.posts.partials.form',[
                                 'entrada' => null,
                                 'categories' => $categories,
                                 'tags' => $tags,
                             ])
-
-                        </form>
+                        </form> --}}
+                        {{ Form::open([
+                            'route' => ['posts.store'],
+                            'method' => 'post'
+                        ])}}
+                            @include('admin.posts.partials.form')
+                        {{Form::close()}}
                     </div>
                 </div>
             </div>
