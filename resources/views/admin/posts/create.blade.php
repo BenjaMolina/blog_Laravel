@@ -20,7 +20,8 @@
                         </form> --}}
                         {{ Form::open([
                             'route' => ['posts.store'],
-                            'method' => 'post'
+                            'method' => 'post',
+                            'files' => true
                         ])}}
                             @include('admin.posts.partials.form')
                         {{Form::close()}}

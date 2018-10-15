@@ -93,6 +93,7 @@ class PostController extends Controller
      */
     public function update(PostRequest $request, Post $post)
     {
+        return $request->all();
         $post->update($request->all());
 
         return back()->with('info', 'Entrada editada Exisota'); 

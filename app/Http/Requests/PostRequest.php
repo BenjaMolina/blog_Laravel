@@ -32,12 +32,12 @@ class PostRequest extends FormRequest
         return [
             'name' => 'required',
             'excerpt' => 'required',
-            'slug' => 'required|unique:posts,slug,'.$id,
+            'slug' => 'required|unique:posts,slug,'.($this->post ? $this->post->id : ''),
             'body' => 'required',
-            'user_id' => 'required',
-            'category_id' => 'required',
-            'status' => 'required',
-            'file' => 'required',
+            'user_id' => 'required|integer',
+            'category_id' => 'required|integer',
+            'status' => 'required|in:DRAFT,PUBLISHED',
+            'file' => 'nullable|mimes:jpg,jpeg,png',
         ];
     }
 }
