@@ -11,6 +11,7 @@
 
 - [Laravel Collective](https://laravelcollective.com).
 - [jQuery-Plugin-stringToSlug](https://github.com/leocaseiro/jQuery-Plugin-stringToSlug).
+- [CKEditor](https://ckeditor.com/ckeditor-4/download/).
 
 
 ## About Laravel
