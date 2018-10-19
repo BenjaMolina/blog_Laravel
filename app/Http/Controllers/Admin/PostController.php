@@ -10,6 +10,7 @@ use App\Category;
 use App\Tag;
 
 use App\Http\Requests\PostRequest;
+    use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -53,7 +54,20 @@ class PostController extends Controller
      */
     public function store(PostRequest $request)
     {
-        $post = Post::create($request->all());
+        $post = (new Post)->fill($request->all());
+
+        if($request->hasFile('file'))
+        {
+            $path = Storage::disk('public')->put('image',$request->file('file'));
+            $post->fill(
+                ["file" => asset($path)]
+            )->save();
+            
+        }
+
+        //Guardamos los Tags
+        $post->tags()->sync($request->tags);
+       
 
         return redirect()->route('posts.edit',$post->id)->with('info', 'entrada creada exitosamente');
     }
@@ -93,8 +107,20 @@ class PostController extends Controller
      */
     public function update(PostRequest $request, Post $post)
     {
-        return $request->all();
-        $post->update($request->all());
+        $post->fill($request->all());
+
+        if($request->hasFile('file'))
+        {
+            $ruta = Storage::disk('public')->put('image', $request->file('file'));
+            
+            $post->fill([
+                "file" => asset($path)
+
+            ])->save();
+        }
+
+        //Tags
+        $post->tags()->sync($request->tags);
 
         return back()->with('info', 'Entrada editada Exisota'); 
     }
