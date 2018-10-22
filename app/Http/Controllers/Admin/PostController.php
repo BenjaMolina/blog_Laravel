@@ -80,6 +80,8 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
+        $this->authorize('permission',$post);
+
         return view('admin.posts.show', compact('post'));
     }
 
@@ -90,7 +92,8 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit(Post $post)
-    {
+    {        
+        $this->authorize('permission',$post);
        
         $categories = Category::orderBy('name', 'ASC')->pluck('name', 'id');
         $tags       = Tag::orderBy('name', 'ASC')->get(['id','name']);
@@ -107,6 +110,8 @@ class PostController extends Controller
      */
     public function update(PostRequest $request, Post $post)
     {
+        $this->authorize('permission',$post);
+        
         $post->fill($request->all());
 
         if($request->hasFile('file'))
@@ -133,6 +138,8 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
+        $this->authorize('permission',$post);
+
         $post->delete();
 
         return back()->with('info', 'Entrada eliminado con exito');
